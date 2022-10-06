@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "elephant.h": "c",
+        "use.h": "c",
+        "main.h": "c"
+    }
+}
