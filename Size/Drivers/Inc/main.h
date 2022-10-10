@@ -12,11 +12,4 @@
 #include <stdbool.h>
 #include <inttypes.h>
 
-#ifndef F_CPU
-#define F_CPU                                       16000000
-#endif
-
-#define delay_ms(t)                                 _delay_ms(t)
-#define delay_us(t)                                 _delay_us(t)
-
 #endif
