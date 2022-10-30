@@ -1,0 +1,18 @@
+build_path			:= Build
+
+device     			:= atmega328p
+f_cpu				:= 16000000UL
+
+port				:= COM8
+baudrata			:= 115200
+program_type		:= arduino
+
+cflags 				= -g -w -Wall -Os -mmcu=$(device) -DF_CPU=$(f_cpu)
+cflags 				+= -Wl,-u,vfprintf -lprintf_flt
+
+compile_path		:= C:\\avr-gcc-12.1.0-x64-windows\\bin\\
+
+gcc_compile    		:= $(compile_path)avr-gcc
+size_compile    	:= $(compile_path)avr-size
+obj_copy_compile   	:= $(compile_path)avr-objcopy
+avrdude_compile		:= $(compile_path)avrdude

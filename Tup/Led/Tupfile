@@ -1,0 +1,43 @@
+include_rules
+
+target 	= led
+
+c_sources = \
+Use/use.c \
+Drivers/Src/serial.c \
+Drivers/Src/main.c
+
+h_sources = \
+-IDrivers/Inc \
+-IUse
+
+objects	= Build/*.o
+
+# : Use/use.c |> $(gcc_compile) $(cflags) $(h_sources) -c Use/use.c -o Build/use.o |> Build/use.o
+# : Drivers/Src/serial.c |> $(gcc_compile) $(cflags) $(h_sources) -c Drivers/Src/serial.c -o Build/serial.o |> Build/serial.o
+# : Drivers/Src/main.c |> $(gcc_compile) $(cflags) $(h_sources) -c Drivers/Src/main.c -o Build/main.o |> Build/main.o
+# : $(objects) |> $(gcc_compile) $(cflags) $(objects) -o Build/led.elf |> Build/led.elf
+
+
+# %f %o
+
+# : Use/use.c |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/use.o
+# : Drivers/Src/serial.c |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/serial.o
+# : Drivers/Src/main.c |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/main.o
+# : $(objects) |> $(gcc_compile) $(cflags) $(objects) -o %o |> Build/led.elf
+
+# %B.o
+
+# : Use/use.c |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/%B.o
+# : Drivers/Src/serial.c |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/%B.o
+# : Drivers/Src/main.c |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/%B.o
+# : $(objects) |> $(gcc_compile) $(cflags) $(objects) -o %o |> Build/led.elf
+
+# foreach
+
+# : foreach Use/use.c Drivers/Src/serial.c Drivers/Src/main.c |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/%B.o
+# : $(objects) |> $(gcc_compile) $(cflags) $(objects) -o %o |> Build/led.elf
+
+: foreach $(c_sources) |> $(gcc_compile) $(cflags) $(h_sources) -c %f -o %o |> Build/%B.o
+: $(objects) |> $(gcc_compile) $(cflags) $(objects) -o %o |> Build/led.elf
+
